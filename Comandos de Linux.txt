@@ -1,0 +1,53 @@
+Comandos de Linux
+
+echo: generar salida con el comando
+
+expr: Calculos matematicos basicos.
+
+clear: limpiar el shell Bash con el comando.
+
+apt list --installed: lista las aplicaciones instaladas.
+
+
+Navegar por Linux y leer el contenido de los archivos:
+
+pwd: muestra en que directorio (carpeta) se encuentra.
+
+ls: muestra el nombre de los archivos y directorios.
+
+cd: navega o mueve entre directorios, Tambien puede ser utilizada para salir de los directorios.
+
+cat: muestra el contenido de un archivo. Ej: cat update.txt
+
+head: muestra las 10 primeras lineas de un archivo. Ej: head updates.txt. Tambien para especificar el numero de lineas se utiliza "-n". Ej: head -n 5 updates.txt.
+
+tail: muestra las 10 ultimas lineas de un archivo. Ej: tail updates.txt. Tambien se puede utilizar "tail" para leer la información más reciente de un archivo de registro.
+
+less: El comando "less" devuelve el contenido de un archivo página a página. Por ejemplo, si introduce "less updates.txt", la ventana del terminal cambiará para mostrar el contenido de updates.txt página a página. Esto le permite avanzar y retroceder fácilmente por el contenido.
+
+Una vez que haya accedido al contenido con el comando less, puede utilizar varios controles de teclado para desplazarse por el archivo:
+
+Space bar: Avanzar una página
+
+b: Retroceder una página
+
+Down arrow: Avanzar una línea
+
+Up arrow: Retroceder una línea
+
+q: Salir y volver a la ventana de terminal anterior
+
+Filtrado de contenidos en Linux:
+
+grep: Busca líneas en archivos que contengan una cadena específica. Ideal para filtrar texto dentro de archivos. Ej: (grep "error" /var/log/syslog) , (grep error time_logs.txt) → Muestra líneas que contienen “error” en el archivo time_logs.txt.
+
+find: Busca archivos y directorios según criterios como nombre, tamaño o fecha de modificación. Muy útil para búsquedas avanzadas. Ej: (ls /home/analyst/reports | grep users) → Lista archivos en reports que contienen “users” en el nombre.
+
+-name: Opción de find que busca nombres exactos (distingue mayúsculas). Ej:
+(find /home/analyst/projects -name "*Log*") → Busca archivos que contengan exactamente "Log" (con mayúscula L) en el nombre. No encontrará "log" o "LOG".
+
+-iname: Variante de -name que no distingue mayúsculas. Ej:                      (find  /home/analyst/projects -iname "*log*") → Busca archivos que contengan "log" en el nombre, sin importar si está en mayúsculas o minúsculas.
+
+-mtime: Opción de find que filtra por fecha de última modificación (en días).    Ej: (find /home/analyst/projects -mtime -2) → Encuentra archivos modificados en los últimos 2 días.
+
+-mmin: Similar a "-mtime", pero filtra por minutos en lugar de días. Ej: (find /home/analyst/projects -mmin -60) → Encuentra archivos modificados en los últimos 60 minutos.
