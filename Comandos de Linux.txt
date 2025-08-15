@@ -50,4 +50,49 @@ find: Busca archivos y directorios según criterios como nombre, tamaño o fecha
 
 -mtime: Opción de find que filtra por fecha de última modificación (en días).    Ej: (find /home/analyst/projects -mtime -2) → Encuentra archivos modificados en los últimos 2 días.
 
+
 -mmin: Similar a "-mtime", pero filtra por minutos en lugar de días. Ej: (find /home/analyst/projects -mmin -60) → Encuentra archivos modificados en los últimos 60 minutos.
+
+Gestión del sistema de archivos en Linux
+Comandos clave:
+
+mkdir: Crea directorios (rutas absolutas o relativas).
+
+rmdir: Elimina directorios vacíos.
+
+touch: Crea archivos vacíos.
+
+rm: Elimina archivos (irreversible).
+
+mv: Mueve o renombra archivos/directorios.
+
+cp: Copia archivos/directorios sin eliminarlos.
+
+Consejo: Usa ls para verificar cambios en el sistema de archivos.
+
+Edición de archivos
+Editor nano:
+
+Fácil de usar y común en distribuciones Linux.
+
+Crear/editar archivos: nano nombre_archivo.
+
+Guardar: Ctrl + O.
+
+Salir: Ctrl + X.
+
+Nota: No tiene autoguardado. Otros editores populares: Vim y Emacs.
+
+Redirección de salida estándar
+Operadores:
+
+>: Sobrescribe el archivo.
+
+>>: Añade contenido al final del archivo.
+
+Ejemplo:
+
+bash
+echo "texto" >> archivo.txt  # Añade
+echo "nuevo texto" > archivo.txt  # Sobrescribe
+Nota: Ambos operadores crean el archivo si no existe.
