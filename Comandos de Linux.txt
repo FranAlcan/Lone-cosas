@@ -23,6 +23,8 @@ head: muestra las 10 primeras lineas de un archivo. Ej: head updates.txt. Tambie
 
 tail: muestra las 10 ultimas lineas de un archivo. Ej: tail updates.txt. Tambien se puede utilizar "tail" para leer la información más reciente de un archivo de registro.
 
+touch: crea archivos vacíos. ej: touch archivo.txt
+
 less: El comando "less" devuelve el contenido de un archivo página a página. Por ejemplo, si introduce "less updates.txt", la ventana del terminal cambiará para mostrar el contenido de updates.txt página a página. Esto le permite avanzar y retroceder fácilmente por el contenido.
 
 Una vez que haya accedido al contenido con el comando less, puede utilizar varios controles de teclado para desplazarse por el archivo:
@@ -50,49 +52,63 @@ find: Busca archivos y directorios según criterios como nombre, tamaño o fecha
 
 -mtime: Opción de find que filtra por fecha de última modificación (en días).    Ej: (find /home/analyst/projects -mtime -2) → Encuentra archivos modificados en los últimos 2 días.
 
-
 -mmin: Similar a "-mtime", pero filtra por minutos en lugar de días. Ej: (find /home/analyst/projects -mmin -60) → Encuentra archivos modificados en los últimos 60 minutos.
 
-Gestión del sistema de archivos en Linux
-Comandos clave:
+agregar, borrar y modificar usuarios ; cambiar propiedad de un archivo:
 
-mkdir: Crea directorios (rutas absolutas o relativas).
+1. sudo
+   - Ejecuta un comando con privilegios de superusuario (root) de manera temporal.
+   - Uso: sudo comando
+   - Ejemplo: sudo apt update
 
-rmdir: Elimina directorios vacíos.
+2. useradd
+   - Crea un nuevo usuario en el sistema.
+   - Opciones comunes:
+       - -g : establece el grupo primario
+       - -G : añade grupos secundarios
+   - Ejemplo: sudo useradd -g security -G finance,admin fgarcia
 
-touch: Crea archivos vacíos.
+3. usermod
+   - Modifica cuentas de usuario existentes.
+   - Opciones comunes:
+       - -g : cambia el grupo primario
+       - -a -G : añade grupos secundarios sin reemplazar los existentes
+       - -d : cambia el directorio personal
+       - -l : cambia el nombre de usuario
+       - -L : bloquea la cuenta del usuario
+   - Ejemplo: sudo usermod -a -G marketing fgarcia
 
-rm: Elimina archivos (irreversible).
+4. userdel
+   - Elimina un usuario del sistema.
+   - Opciones comunes:
+       - -r : elimina también su directorio personal y archivos
+   - Ejemplo: sudo userdel -r fgarcia
 
-mv: Mueve o renombra archivos/directorios.
+5. chown
+   - Cambia el propietario (usuario o grupo) de un archivo o directorio.
+   - Ejemplos:
+       sudo chown fgarcia access.txt        # Cambia propietario a fgarcia
+       sudo chown :security access.txt      # Cambia grupo propietario a security
+       sudo chown fgarcia:security access.txt # Cambia ambos (usuario y grupo)
 
-cp: Copia archivos/directorios sin eliminarlos.
+Recursos y comandos de ayuda:
 
-Consejo: Usa ls para verificar cambios en el sistema de archivos.
+1. man
+   - Muestra el manual de ayuda de un comando (páginas de manual).
+   - Uso: man comando
+   - Ejemplo: man chown
 
-Edición de archivos
-Editor nano:
+2. apropos
+   - Busca una palabra clave dentro de las descripciones de las páginas de manual.
+   - Opciones comunes:
+       - -a : permite buscar varias palabras al mismo tiempo
+   - Uso:
+       apropos palabra
+       apropos -a palabra1 palabra2
+   - Ejemplo: apropos editor
+   - Ejemplo: apropos -a graph editor
 
-Fácil de usar y común en distribuciones Linux.
-
-Crear/editar archivos: nano nombre_archivo.
-
-Guardar: Ctrl + O.
-
-Salir: Ctrl + X.
-
-Nota: No tiene autoguardado. Otros editores populares: Vim y Emacs.
-
-Redirección de salida estándar
-Operadores:
-
->: Sobrescribe el archivo.
-
->>: Añade contenido al final del archivo.
-
-Ejemplo:
-
-bash
-echo "texto" >> archivo.txt  # Añade
-echo "nuevo texto" > archivo.txt  # Sobrescribe
-Nota: Ambos operadores crean el archivo si no existe.
+3. whatis
+   - Muestra en una sola línea la descripción breve de un comando.
+   - Uso: whatis comando
+   - Ejemplo: whatis nano
