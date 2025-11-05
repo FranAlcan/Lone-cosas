@@ -112,3 +112,56 @@ Recursos y comandos de ayuda:
    - Muestra en una sola línea la descripción breve de un comando.
    - Uso: whatis comando
    - Ejemplo: whatis nano
+
+
+**Encriptacion**
+
+1) tr
+
+¿Qué hace?
+tr traduce o reemplaza caracteres en texto.
+
+Ejemplo: convertir todas las letras minúsculas a mayúsculas:
+
+echo "hola mundo" | tr 'a-z' 'A-Z'
+
+
+Salida:
+
+HOLA MUNDO
+
+2) cmp
+
+¿Qué hace?
+cmp compara dos archivos byte por byte y dice dónde son diferentes.
+
+Ejemplo:
+
+cmp archivo1.txt archivo2.txt
+
+
+Si los archivos son iguales, no muestra nada ✅
+Si son diferentes, muestra la primera diferencia ❌
+
+Salida ejemplo si difieren:
+
+archivo1.txt archivo2.txt differ: byte 5, line 1
+
+3) sha256sum
+
+¿Qué hace?
+sha256sum genera un hash SHA-256 para verificar integridad de archivos.
+
+Ejemplo:
+
+sha256sum archivo.zip
+
+
+Salida: (hash del archivo)
+
+e3b0c44298fc1c149afbf4c8996fb924...  archivo.zip
+
+
+Si descargas ese archivo en otro sistema, vuelves a calcular su hash.
+✅ Si coincide, el archivo es auténtico.
+❌ Si cambia, el archivo fue modificado.
