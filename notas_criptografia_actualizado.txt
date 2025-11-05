@@ -1,0 +1,60 @@
+Resumen de notas - Laboratorio Criptografía en Linux
+
+1. Objetivo del laboratorio:
+   - Practicar tareas básicas de criptografía en Linux.
+   - Usar cifrado César y OpenSSL para recuperar archivos cifrados.
+
+2. Escenario:
+   - Directorio personal está cifrado.
+   - Recuperar archivos descifrando mensajes ocultos.
+
+3. Herramientas y comandos usados:
+   - ls: listar archivos.
+   - cat: mostrar contenido de archivos.
+   - cd: cambiar directorio.
+   - ls -a: mostrar archivos ocultos.
+   - tr: traducir caracteres (descifrado César).
+   - openssl aes-256-cbc: descifrar con una clave.
+
+4. Proceso general:
+   - Buscar pistas en README.txt.
+   - Entrar a subdirectorio "caesar".
+   - Hallar archivo oculto .leftShift3.
+   - Aplicar tr para descifrado César (shift 3 izquierda).
+   - Obtener comando para descifrar archivo principal.
+   - Ejecutar comando OpenSSL para recuperar datos.
+
+5. Comando importante revelado:
+   openssl aes-256-cbc -pbkdf2 -a -d -in Q1.encrypted -out Q1.recovered -k ettubrute
+
+6. Archivos involucrados:
+   - Q1.encrypted → archivo cifrado inicial.
+   - .leftShift3 → mensaje cifrado César.
+   - Q1.recovered → archivo final descifrado.
+
+7. Resultado final:
+   - Se logró descifrar mensajes, archivos ocultos y archivos cifrados.
+
+
+8. Comandos utilizados (con descripción)
+   - ls /home/analyst
+     Lista archivos en el directorio /home/analyst.
+   - cat README.txt
+     Muestra el contenido del archivo README.txt.
+   - cd caesar
+     Entra al subdirectorio 'caesar'.
+   - ls -a
+     Lista todos los archivos, incluidos los ocultos (aquellos que comienzan con '.').
+   - cat .leftShift3
+     Muestra el contenido del archivo oculto .leftShift3.
+   - cat .leftShift3 | tr "d-za-cD-ZA-C" "a-zA-Z"
+     Aplica una traducción (tr) para revertir un cifrado César (desplazamiento de 3) y mostrar el texto descifrado.
+   - openssl aes-256-cbc -pbkdf2 -a -d -in Q1.encrypted -out Q1.recovered -k ettubrute
+     Utiliza OpenSSL para descifrar el archivo Q1.encrypted con AES-256-CBC y la contraseña 'ettubrute', generando Q1.recovered.
+   - cd ~
+     Regresa al directorio home del usuario actual.
+   - ls
+     Lista archivos en el directorio de trabajo actual (usado para verificar la creación de Q1.recovered).
+   - cat Q1.recovered
+     Muestra el contenido del archivo descifrado Q1.recovered.
+
