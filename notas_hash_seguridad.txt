@@ -1,0 +1,47 @@
+Notas resumen — Funciones Hash y Seguridad
+
+1. ¿Qué es una función hash?
+   - Algoritmo que transforma datos en un valor único y fijo.
+   - No reversible (no puede desencriptarse).
+   - Usos: autenticación, integridad, no repudio.
+
+2. Origen y propósito inicial
+   - Surgieron para búsqueda rápida de datos.
+   - Representan datos grandes como valores pequeños en tablas hash.
+
+3. MD5 — Primeros mecanismos
+   - Creado por Ronald Rivest (MIT) en los años 90.
+   - Produce valores de 128 bits (32 caracteres).
+   - Vulnerable a colisiones (dos entradas → mismo hash).
+
+4. Colisiones de hash
+   - Problema: entradas infinitas → salidas finitas.
+   - Riesgo: un atacante puede falsificar identidad de datos.
+
+5. Nueva generación: SHA (Secure Hash Algorithms)
+   - Aprobados por NIST.
+   - SHA-1: 160 bits (vulnerable)
+   - SHA-224 / SHA-256 / SHA-384 / SHA-512 → más seguros.
+   - Mientras más largo el hash, mayor seguridad.
+
+6. Hash y almacenamiento de contraseñas
+   - Contraseñas no deben guardarse en texto plano.
+   - Hash evita que un atacante las lea si accede a la base de datos.
+
+7. Tablas Rainbow
+   - Diccionarios de hashes + textos originales precomputados.
+   - Usados para crackear contraseñas débiles.
+
+8. Salting
+   - Agregar cadena aleatoria antes del hash.
+   - Cada entrada será única → protege contra tablas rainbow.
+   - Entre más larga y compleja la sal, mejor.
+
+9. Buenas prácticas de seguridad
+   - Evitar MD5 para datos sensibles.
+   - Usar SHA-256 o superior.
+   - Implementar salting en almacenamiento de contraseñas.
+   - Validar integridad de archivos con funciones hash seguras.
+
+Conclusión:
+Las funciones hash son esenciales para autenticación, integridad y seguridad de contraseñas. MD5 está obsoleto; SHA y técnicas como salting fortalecen la protección contra ataques y colisiones.
